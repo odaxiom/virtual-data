@@ -1,4 +1,4 @@
-# Virtual Data
+# Vdata
 This package aims to provide an abstraction about the management of any types of data : boolean, int, float, string, array, dict, json, file, ... .
 
 Principles :
@@ -15,7 +15,7 @@ pip install .
 ```
 
 ## Examples
-```
+```python
 from vdata import Data
 
 meaning_of_life = Data(name='meaning_of_life', namespace='raw')
