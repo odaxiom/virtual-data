@@ -32,7 +32,7 @@ del a
 assert meaning_of_life.get() == 42 # we are able to retrieve the previous variable
 
 # update with another variable value
-meaning_of_life.update(data=43)
+meaning_of_life.update(data=43) # this will create a pickle in ./.data/raw/meaning_of_life.1.vdata
 
 assert meaning_of_life.get() == 43
 assert meaning_of_life.get(revision='latest') == 43
