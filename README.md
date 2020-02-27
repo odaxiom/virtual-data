@@ -18,15 +18,20 @@ pip install .
 ```python
 from vdata import Data
 
-meaning_of_life = Data(name='meaning_of_life', namespace='raw')
+
+# instantiate some variables
 a = 42
+b = 43
+
+# instantiate a virtual data
+meaning_of_life = Data(name='meaning_of_life', namespace='raw')
 
 meaning_of_life.update(data=a) # this will create a pickle in ./.data/raw/meaning_of_life.0.vdata
 
 del a
-assert meaning_of_life.get() == 42
+assert meaning_of_life.get() == 42 # we are able to retrieve the previous variable
 
-b = 43
+# update with another variable value
 meaning_of_life.update(data=43)
 
 assert meaning_of_life.get() == 43
