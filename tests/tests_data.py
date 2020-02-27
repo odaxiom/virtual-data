@@ -91,3 +91,25 @@ class DataTests(unittest.TestCase):
         a = df.iloc[0]['a']
 
         self.assertTrue(a, 42)
+
+    def test_get_retrieve_latest_version(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=10)
+        data.update(data=100)
+
+        self.assertEqual(data.get(revision='latest'), 100)
+
+    def test_get_retrieve_previous_version(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=10)
+        data.update(data=100)
+
+        self.assertEqual(data.get(revision=0), 10)
+
+    def test_get_retrieve_specific_version(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=10)
+        data.update(data=100)
+        data.update(data=1000)
+
+        self.assertEqual(data.get(revision=1), 100)

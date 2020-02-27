@@ -28,11 +28,18 @@ class Data:
         if self.current_file_path:
             self.extension = self.current_file_path.split('.')[-1]
 
-    def get(self):
-        if self.extension != 'vdata':
-            return self.current_file_path
+    def get(self, revision='latest'):
+        if revision == 'latest':
+            version = self.get_max_version()
+        else:
+            version = revision
 
-        with open(self.file_path_version, 'rb') as f:
+        file_path = self._get_file_path_version(version)
+
+        if self.extension != 'vdata':
+            return file_path
+
+        with open(file_path, 'rb') as f:
             return pickle.load(f)
 
     def update(self, data=None, file_path=None):
