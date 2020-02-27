@@ -25,7 +25,7 @@ class DataModelTests(unittest.TestCase):
             y = x * 2
 
             model.fit([[x]], [y])
-            MODEL.save(model)
+            MODEL.update(model)
 
         self.assertTrue(os.path.join('.vdata', 'model', 'my_model.0.vdata'))
         self.assertTrue(os.path.join('.vdata', 'model', 'my_model.9.vdata'))
@@ -40,7 +40,7 @@ class DataModelTests(unittest.TestCase):
 
         model.fit(X, y)
 
-        MODEL.save(model)
+        MODEL.update(model)
         del model
 
         model = MODEL.get()

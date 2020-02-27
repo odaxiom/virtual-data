@@ -35,7 +35,7 @@ class Data:
         with open(self.file_path_version, 'rb') as f:
             return pickle.load(f)
 
-    def save(self, data=None, file_path=None):
+    def update(self, data=None, file_path=None):
         version = self.max_version + 1
         file_path_version = self._get_file_path_version(version)
 
