@@ -36,6 +36,6 @@ assert meaning_of_life.get(revision=0) == 42
 ```
 
 ## Todo
-[ ] Able to update the default PATH = 'data'
-[ ] Add version with GCP Bucket
-[ ] Add version with Amazon Bucket
+- [ ] Able to update the default PATH = 'data'
+- [ ] Add version with GCP Bucket
+- [ ] Add version with Amazon Bucket
