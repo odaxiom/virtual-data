@@ -13,7 +13,7 @@ random.seed(42)
 
 class DataModelTests(unittest.TestCase):
     def tearDown(self):
-        shutil.rmtree('data', ignore_errors=True)
+        shutil.rmtree('.vdata', ignore_errors=True)
 
     def test_model_saving(self):
         model = RandomForestRegressor(random_state=42)
@@ -27,8 +27,8 @@ class DataModelTests(unittest.TestCase):
             model.fit([[x]], [y])
             MODEL.save(model)
 
-        self.assertTrue(os.path.join('data', 'model', 'my_model.0'))
-        self.assertTrue(os.path.join('data', 'model', 'my_model.9'))
+        self.assertTrue(os.path.join('.vdata', 'model', 'my_model.0.vdata'))
+        self.assertTrue(os.path.join('.vdata', 'model', 'my_model.9.vdata'))
 
     def test_model_loading(self):
         model = RandomForestRegressor(random_state=42)

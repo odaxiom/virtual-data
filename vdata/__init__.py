@@ -4,17 +4,11 @@ import pickle
 import shutil
 
 
-PATH = 'data'
-
-
-"""
-Every data is saved with this pattern :
- - {PATH}/{NAMESPACE}/{name}.{version}.{extension}
-"""
+PATH = '.vdata'
 
 
 class Data:
-    extension = 'data'
+    extension = 'vdata'
 
     def __init__(self, name: str, type: str):
         self.name = name
@@ -35,7 +29,7 @@ class Data:
             self.extension = self.current_file_path.split('.')[-1]
 
     def get(self):
-        if self.extension != 'data':
+        if self.extension != 'vdata':
             return self.current_file_path
 
         with open(self.file_path_version, 'rb') as f:

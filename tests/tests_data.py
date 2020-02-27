@@ -8,7 +8,7 @@ from vdata import Data
 
 class DataTests(unittest.TestCase):
     def tearDown(self):
-        shutil.rmtree('data', ignore_errors=True)
+        shutil.rmtree('.vdata', ignore_errors=True)
 
     def test_save_is_variable_created(self):
         """
@@ -19,7 +19,7 @@ class DataTests(unittest.TestCase):
         data = Data(name='my_variable', type='raw')
         data.save(data=a)
 
-        self.assertTrue(os.path.isfile(os.path.join('data', 'raw', 'my_variable.0.data')))
+        self.assertTrue(os.path.isfile(os.path.join('.vdata', 'raw', 'my_variable.0.vdata')))
 
     def test_get_variable(self):
         """
@@ -63,7 +63,7 @@ class DataTests(unittest.TestCase):
 
         data.save(file_path='tests/tests.csv')
 
-        self.assertTrue(os.path.isfile(os.path.join('data', 'raw', 'job.0.csv')))
+        self.assertTrue(os.path.isfile(os.path.join('.vdata', 'raw', 'job.0.csv')))
 
     def test_save_file_load_dataframe(self):
         """
