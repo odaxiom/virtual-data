@@ -10,14 +10,14 @@ PATH = '.vdata'
 class Data:
     extension = 'vdata'
 
-    def __init__(self, name: str, type: str):
+    def __init__(self, name: str, namespace: str):
         self.name = name
-        self.type = type
+        self.namespace = namespace
 
         self._reload()
 
     def _reload(self):
-        self.file_path = os.path.join(PATH, self.type, self.name)
+        self.file_path = os.path.join(PATH, self.namespace, self.name)
 
         self.versions = self.get_versions()
         self.max_version = self.get_max_version()
@@ -51,7 +51,7 @@ class Data:
         self._reload()
 
     def _get_file_path_version(self, version: int):
-        return os.path.join(PATH, self.type, self.name + f'.{version}' + f'.{self.extension}')
+        return os.path.join(PATH, self.namespace, self.name + f'.{version}' + f'.{self.extension}')
 
     def _current_file_path(self):
         version = self.get_max_version()

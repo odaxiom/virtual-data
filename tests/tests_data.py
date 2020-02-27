@@ -16,7 +16,7 @@ class DataTests(unittest.TestCase):
         """
         a = 42
 
-        data = Data(name='my_variable', type='raw')
+        data = Data(name='my_variable', namespace='raw')
         data.save(data=a)
 
         self.assertTrue(os.path.isfile(os.path.join('.vdata', 'raw', 'my_variable.0.vdata')))
@@ -26,7 +26,7 @@ class DataTests(unittest.TestCase):
         Check if a file is created when save is called.
         """
         a = 42
-        data = Data(name='my_variable', type='raw')
+        data = Data(name='my_variable', namespace='raw')
         data.save(data=a)
 
         del a
@@ -39,7 +39,7 @@ class DataTests(unittest.TestCase):
         """
         Check if we are able to get versions of Data
         """
-        data = Data(name='my_variable', type='raw')
+        data = Data(name='my_variable', namespace='raw')
         data.save(data=10)
         data.save(data=100)
 
@@ -49,7 +49,7 @@ class DataTests(unittest.TestCase):
         """
         Check if we are able to get max version of Data
         """
-        data = Data(name='my_variable', type='raw')
+        data = Data(name='my_variable', namespace='raw')
         data.save(data=10)
         data.save(data=100)
 
@@ -59,7 +59,7 @@ class DataTests(unittest.TestCase):
         """
         Save a file from path.
         """
-        data = Data(name="job", type="raw")
+        data = Data(name="job", namespace="raw")
 
         data.save(file_path='tests/tests.csv')
 
@@ -69,7 +69,7 @@ class DataTests(unittest.TestCase):
         """
         Save CSV file and load in dataframe.
         """
-        data = Data(name="job", type="raw")
+        data = Data(name="job", namespace="raw")
 
         data.save(file_path='tests/tests.csv')
         df = pd.read_csv(data.get())
@@ -79,13 +79,13 @@ class DataTests(unittest.TestCase):
         self.assertTrue(a, 42)
 
     def test_save_file_ext_and_reload(self):
-        data = Data(name="job", type="raw")
+        data = Data(name="job", namespace="raw")
 
         data.save(file_path='tests/tests.csv')
 
         del data
 
-        data = Data(name="job", type="raw")
+        data = Data(name="job", namespace="raw")
         df = pd.read_csv(data.get())
 
         a = df.iloc[0]['a']

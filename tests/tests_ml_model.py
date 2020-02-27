@@ -18,7 +18,7 @@ class DataModelTests(unittest.TestCase):
     def test_model_saving(self):
         model = RandomForestRegressor(random_state=42)
 
-        MODEL = Data(name='my_model', type='model')
+        MODEL = Data(name='my_model', namespace='model')
 
         for _ in range(10):
             x = random.randint(0, 1000)
@@ -33,7 +33,7 @@ class DataModelTests(unittest.TestCase):
     def test_model_loading(self):
         model = RandomForestRegressor(random_state=42)
 
-        MODEL = Data(name='my_model', type='model')
+        MODEL = Data(name='my_model', namespace='model')
 
         X = [[random.randint(0, 100)] for _ in range(1000)]
         y = [np.multiply(x, 2) for x in X]
