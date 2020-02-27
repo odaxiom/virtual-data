@@ -8,5 +8,5 @@ setuptools.setup(
     author_email="sebastien.harinck@odaxiom.com",
     description="A python package that aims to provide an abstraction about the management of any types of Data",
     packages=setuptools.find_packages(),
-    python_requires='>=3.8',
+    python_requires='>=3.7',
 )
