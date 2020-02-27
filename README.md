@@ -75,7 +75,7 @@ p = model.predict(x)
 prediction.update({'x': x, 'predicted': p})
 ```
 
-This system will reach its full potential when data will be saved directly online ;-)
+This system will reach its full potential when data will be saved online ;-)
 
 ## Todo
 - [ ] Able to update the default PATH = 'data'
