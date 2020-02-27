@@ -9,8 +9,8 @@ Principles :
 
 ## Quickstart
 ```
-git clone https://github.com/odaxiom/virtual-data
-cd virtual-data
+git clone https://github.com/odaxiom/vdata
+cd vdata
 pip install .
 ```
 
