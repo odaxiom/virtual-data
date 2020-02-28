@@ -2,7 +2,7 @@ from vdata import Data
 import time
 
 
-N = 2000
+N = 50_000
 SUM_UPDATE = 0
 SUM_GET = 0
 
