@@ -27,8 +27,8 @@ class DataModelTests(unittest.TestCase):
             model.fit([[x]], [y])
             MODEL.update(model)
 
-        self.assertTrue(os.path.join('.vdata', 'model', 'my_model.0.vdata'))
-        self.assertTrue(os.path.join('.vdata', 'model', 'my_model.9.vdata'))
+        self.assertTrue(os.path.isfile(os.path.join('.vdata', 'model', 'my_model.0.vdata')))
+        self.assertTrue(os.path.isfile(os.path.join('.vdata', 'model', 'my_model.9.vdata')))
 
     def test_model_loading(self):
         model = RandomForestRegressor(random_state=42)
