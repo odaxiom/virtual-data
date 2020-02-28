@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import shutil
 import unittest
+import pickle
 
 from vdata import Data
 
@@ -113,3 +114,24 @@ class DataTests(unittest.TestCase):
         data.update(data=1000)
 
         self.assertEqual(data.get(revision=1), 100)
+
+    def test_get_head_path(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=1)
+
+        self.assertEqual(data._get_head_path(), os.path.join('.vdata', 'raw', 'my_variable.head'))
+
+    def test_max_revision_saving_head_file(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=1)
+
+        self.assertTrue(os.path.isfile(os.path.join('.vdata', 'raw', 'my_variable.head')))
+
+    def test_max_revision_from_head(self):
+        data = Data(name='my_variable', namespace='raw')
+        data.update(data=1)
+
+        with open(os.path.join('.vdata', 'raw', 'my_variable.head'), 'rb') as f:
+            revision = pickle.load(f)
+
+        self.assertEqual(revision, 0)

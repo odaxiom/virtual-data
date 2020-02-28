@@ -19,7 +19,6 @@ class Data:
     def _reload(self):
         self.file_path = os.path.join(PATH, self.namespace, self.name)
 
-        self.versions = self.get_versions()
         self.max_version = self.get_max_version()
         self.file_path_version = self._get_file_path_version(self.max_version)
 
@@ -55,10 +54,16 @@ class Data:
             self.extension = file_path.split('.')[-1]
             shutil.copy(file_path, self._get_file_path_version(version))
 
+        with open(self._get_head_path(), 'wb') as f:
+            pickle.dump(version, f)
+
         self._reload()
 
     def _get_file_path_version(self, version: int):
         return os.path.join(PATH, self.namespace, self.name + f'.{version}' + f'.{self.extension}')
+
+    def _get_head_path(self):
+        return os.path.join(PATH, self.namespace, self.name + '.head')
 
     def _current_file_path(self):
         version = self.get_max_version()
@@ -68,11 +73,14 @@ class Data:
         return None
 
     def get_max_version(self):
-        if len(self.versions) == 0:
+        if not os.path.isfile(self._get_head_path()):
             return -1
-        return max(self.versions)
+
+        with open(self._get_head_path(), 'rb') as f:
+            return pickle.load(f)
 
     def get_versions(self):
         files = glob.glob(os.path.join(self.file_path + '.*'))
+        files = [file for file in files if not file.endswith('.head')]
         versions = sorted([int(file.split('.')[-2]) for file in files])
         return versions
