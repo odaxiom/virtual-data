@@ -68,8 +68,11 @@ class Data:
     def _current_file_path(self):
         version = self.get_max_version()
         if version != -1:
-            files = glob.glob(os.path.join(self.file_path + f'.{version}.*'))
-            return files[0]
+            path = self._get_file_path_version(version)
+            if not os.path.isfile(path):
+                files = glob.glob(os.path.join(self.file_path + f'.{version}.*'))
+                return files[0]
+            return path
         return None
 
     def get_max_version(self):
